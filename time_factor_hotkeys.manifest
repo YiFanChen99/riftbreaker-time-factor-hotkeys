@@ -1,0 +1,20 @@
+WorkspaceManifest
+{
+	description "U3dpdGNoIHRoZSBnYW1lIHNwZWVkIHdpdGggaG90a2V5cyBpbnN0ZWFkIG9mIHR5cGluZyB0aW1lX2ZhY3RvciBpbiB0aGUgY29uc29sZS4KCkYxIC0gdGltZV9mYWN0b3IgMC4zIChzbG93KQpGMiAtIHRpbWVfZmFjdG9yIDEgKG5vcm1hbCkKRjMgLSB0aW1lX2ZhY3RvciAxLjUKRjQgLSB0aW1lX2ZhY3RvciAzCgpUaGUga2V5cyBhcmUgYm91bmQgZXZlcnkgdGltZSBhIG1hcCBsb2Fkcywgc28gdGhleSB3b3JrIGluIGFueSBtaXNzaW9uIG9yIHNhdmUuClRlc3RlZCBpbiBzaW5nbGUgcGxheWVyIG9ubHk7IG11bHRpcGxheWVyIGJlaGF2aW91ciBpcyB1bnRlc3RlZC4KCldhbnQgb3RoZXIga2V5cyBvciBzcGVlZHM/IEluc3RhbGwgaXQgYXMgYSBsb2NhbCBtb2QgZnJvbSB0aGUgc291cmNlIGFuZCBlZGl0IFNQRUVEX0tFWVM6Cmh0dHBzOi8vZ2l0aHViLmNvbS9ZaUZhbkNoZW45OS9yaWZ0YnJlYWtlci10aW1lLWZhY3Rvci1ob3RrZXlz"
+	tags
+	{
+		String "Other"
+	}
+
+	modified_game_files
+	title "VGltZSBGYWN0b3IgSG90a2V5cw=="
+	homepage "https://github.com/YiFanChen99/riftbreaker-time-factor-hotkeys"
+	modio_published_file "0"
+	visibility "0"
+	game_version "EXE: 1186 DATA: 847"
+	version "1.0.0"
+	localizations
+	author
+	steam_published_file "0"
+	dependencies
+}
