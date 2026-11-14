@@ -10,7 +10,7 @@ WorkspaceManifest
 	title "VGltZSBGYWN0b3IgSG90a2V5cw=="
 	homepage "https://github.com/YiFanChen99/riftbreaker-time-factor-hotkeys"
 	modio_published_file "6528005"
-	visibility "1"
+	visibility "0"
 	game_version "EXE: 1186 DATA: 847"
 	version "1.0.0"
 	localizations
