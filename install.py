@@ -33,9 +33,14 @@ MANIFEST = f"{MOD_NAME}.manifest"
 REFRESHED_FILES = [f"{MOD_NAME}.png", "changelog.txt"]
 
 
-def published_id(manifest: Path) -> str:
-    match = re.search(r'steam_published_file "(\d+)"', manifest.read_text(encoding="utf-8"))
+def published_id(manifest: Path, field: str = "steam_published_file") -> str:
+    match = re.search(rf'{field} "(\d+)"', manifest.read_text(encoding="utf-8"))
     return match.group(1) if match else "0"
+
+
+def published_ids(manifest: Path) -> tuple[str, str]:
+    """The Steam Workshop and mod.io item IDs; "0" means not published there."""
+    return published_id(manifest, "steam_published_file"), published_id(manifest, "modio_published_file")
 
 
 def install(target: Path) -> None:
@@ -46,7 +51,8 @@ def install(target: Path) -> None:
     for name in REFRESHED_FILES:
         shutil.copy2(SOURCE_DIR / name, target / name)
     if (target / MANIFEST).exists():
-        print(f"Kept the existing {MANIFEST} (Workshop item ID {published_id(target / MANIFEST)})")
+        steam, modio = published_ids(target / MANIFEST)
+        print(f"Kept the existing {MANIFEST} (Steam Workshop ID {steam}, mod.io ID {modio})")
     else:
         shutil.copy2(SOURCE_DIR / MANIFEST, target / MANIFEST)
     print(f"Installed {target}")
@@ -60,15 +66,16 @@ def save_manifest(target: Path) -> None:
     if not source.exists():
         sys.exit(f"No manifest at {source}")
     shutil.copy2(source, SOURCE_DIR / MANIFEST)
-    print(f"Copied {source} here (Workshop item ID {published_id(source)}); commit it")
+    steam, modio = published_ids(source)
+    print(f"Copied {source} here (Steam Workshop ID {steam}, mod.io ID {modio}); commit it")
 
 
 def remove(target: Path) -> None:
     if not target.exists():
         print(f"Not installed: {target} does not exist")
         return
-    if (target / MANIFEST).exists() and published_id(target / MANIFEST) != published_id(SOURCE_DIR / MANIFEST):
-        sys.exit("The workspace's manifest holds a Workshop item ID this repository lacks; "
+    if (target / MANIFEST).exists() and published_ids(target / MANIFEST) != published_ids(SOURCE_DIR / MANIFEST):
+        sys.exit("The workspace's manifest holds a Steam Workshop or mod.io item ID this repository lacks; "
                  "run `python install.py save-manifest` first")
     shutil.rmtree(target)
     print(f"Removed {target}")

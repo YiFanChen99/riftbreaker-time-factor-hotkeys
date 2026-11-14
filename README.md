@@ -77,15 +77,17 @@ local SPEED_KEYS = {
 
 1. 在 Steam 收藏庫勾選「工具」篩選，安裝 **The Riftbreaker - Tools**（約 1 GB，裝在 `<遊戲資料夾>\tools\`）。
 2. 執行 `python install.py`，確保 workspace 是最新的。
-3. 開啟 `<遊戲資料夾>\tools\bin\workspace_editor_win_release.exe`，選擇 `time_factor_hotkeys` workspace。
+3. **從 Steam 收藏庫啟動 The Riftbreaker - Tools**（會開啟 Workspace Editor），選擇 `time_factor_hotkeys` workspace。不要直接雙擊 `tools\bin\workspace_editor_win_release.exe`：那樣 Steam 不知道它是哪個 App（Tools 的 App ID 是 1849580，`tools\bin` 裡沒有 `steam_appid.txt`），編輯器的 log 會出現 `STEAM: SteamAPI_Init failed!`，只有 mod.io 能上傳成功。
 4. 用 **Update workspace manifest** 確認標題、說明、標籤、可見度（Public / Private）和預覽圖。
 5. 按 **Publish**，選 Steam。Steam 必須是「線上」狀態。
 6. 第一次發佈時，Steam 可能要求接受 Workshop 法律協議，項目才會公開顯示。
 7. 執行 `python install.py save-manifest`，把含 Workshop ID 的 manifest 存回本專案，然後 commit。
 
+Publish 也會同時上傳到 mod.io，ID 記在 manifest 的 `modio_published_file`。發佈結果要看編輯器的 log：`文件\EXOR Tools\Workspace Editor\exor_logs.txt`。
+
 之後要更新：修改 `changelog.txt` 和 manifest 的 `version`，再重複第 2～5、7 步。
 
-- **Workshop ID 不能弄丟**：manifest 的 `steam_published_file` 是 `0` 時，Publish 會建立一個新的 Workshop 項目，而不是更新原本那個。`install.py` 不會覆蓋 workspace 裡既有的 manifest。`remove` 發現 workspace 的 ID 還沒存回本專案時，也會拒絕刪除。
+- **Workshop ID 不能弄丟**：manifest 的 `steam_published_file` 是 `0` 時，Publish 會建立一個新的 Workshop 項目，而不是更新原本那個。`install.py` 不會覆蓋 workspace 裡既有的 manifest。`remove` 發現 workspace 的 Steam 或 mod.io ID 還沒存回本專案時，也會拒絕刪除。
 - **預覽圖規格**（編輯器的檢查條件）：PNG、16:9、至少 512×288、不超過 2 MB，檔名是 `<workspace 名稱>.png`。
 - **可選標籤**：Buildings、Creatures、Items、Missions、Mod Pack、Other、Rebalance、Research、Skins、Tiles、Weapons。
 - 自己訂閱測試時，記得在 Workspace Editor 停用本機的 workspace，避免同一個 mod 被載入兩次。
