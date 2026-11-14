@@ -15,7 +15,7 @@ WorkspaceManifest
 	version "1.0.0"
 	localizations
 	author
-	steam_published_file "0"
+	steam_published_file "3839609377"
 	dependencies
 }
 
